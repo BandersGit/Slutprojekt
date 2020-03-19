@@ -81,14 +81,14 @@ namespace Slutprojekt
 
             string bet = Console.ReadLine();
 
-            int.TryParse(bet, out int betint);
+            int.TryParse(bet, out int betInt);
 
             Console.WriteLine("");
             Console.WriteLine("");
 
-            while (betint > money)
+            while (betInt > money || betInt == 0)
             {
-                Console.WriteLine("You can't do that sir");
+                Console.WriteLine("You can't bet that amount sir");
 
                 Break();
 
@@ -96,26 +96,24 @@ namespace Slutprojekt
 
                 bet = Console.ReadLine();
 
-                int.TryParse(bet, out betint);
+                int.TryParse(bet, out betInt);
             }
 
-            money -= betint;
+            money -= betInt;
 
             Break();
 
             Console.Clear();
-            Console.WriteLine("You bet " + betint + " dollars on " + horses[horseInt]);
+            Console.WriteLine("You bet " + betInt + " dollars on horse number " + horses[horseInt]);
 
             Break();
 
             Console.WriteLine("You have " + money + " dollars left");
 
-            Break();
+            Thread.Sleep(2000);
 
             Console.Clear();
             Console.WriteLine("It's time to race!");
-
-            
 
             int result = generator.Next(1, 5);
 
@@ -125,37 +123,42 @@ namespace Slutprojekt
 
             Break();
 
+            money = Winnings(money, betInt, result, horseInt);
+
+            Break();
+            Console.Clear();
+
+            Console.WriteLine("You now have " + money + " dollars!");
+
+            Console.ReadLine();
+        }
+
+
+        static int Winnings(int money, int betInt, int result, int horseInt)
+        {
             if (result != horseInt)
             {
                 Console.WriteLine("You lost!");
+
+                Break();
+
+                Console.WriteLine("You get nothing!");
             }
 
             else if (result == horseInt)
             {
                 Console.WriteLine("You won!");
+
+                Break();
+
+                Console.WriteLine("You get double your winnings back!");
+
+                betInt *= 2;
+
+                money += betInt;
             }
 
-
-
-
-
-            //Bestäm användarens pengar
-
-            //Kom in till hästbanan
-
-            //Betta på en häst
-
-            //Hästarna springer
-
-            //Få in resultatet, jämför med hästen man bettade på
-
-            //Bestäm om användaren tjänar eller förlorar pengar
-
-            //GO AGAIN?
-
-
-            Console.ReadLine();
-
+            return money;
         }
 
         static void Break()
