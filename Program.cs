@@ -86,11 +86,11 @@ namespace Slutprojekt
 
                 int.TryParse(bet, out int betInt);
 
-                Console.WriteLine("");
-                Console.WriteLine("");
-
                 while (betInt > money || betInt == 0)
                 {
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+
                     Console.WriteLine("You can't bet that amount sir");
 
                     Break();
@@ -145,6 +145,9 @@ namespace Slutprojekt
                 while (answer != "Y" && answer != "N")
                 {
                     Console.WriteLine("Excuse me sir, I couldn't hear you");
+
+                    Break();
+
                     Console.WriteLine("Please say Y or N");
 
                     answer = Console.ReadLine().ToUpper();
@@ -177,7 +180,7 @@ namespace Slutprojekt
                 Console.WriteLine("Goodbye sir, your car is waiting for you outside");
             }
 
-            if (money == 0)
+            if (money == 0 && again == true)
             {
                 Console.WriteLine("Looks like you are out of money");
 
