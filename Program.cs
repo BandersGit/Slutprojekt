@@ -200,9 +200,9 @@ namespace Slutprojekt
         }
 
 
-        static int Winnings(int money, int betInt, int result, int horseInt)
-        {
-            if (result != horseInt)
+        static int Winnings(int money, int betInt, int result, int horseInt)     //Metoden för att räkna ut hur mycket pengar man får, den tar in det den behöver räkna med, 
+        {                                                                        //alltså kunna jämföra användaresn häst och vinnarens, samt kunna modifiera pengarna med hjälp av satsningen.
+            if (result != horseInt)                 //Om hästen som vann inte har samma nummer som hästen man satsade på så förlorar man.
             {
                 Console.WriteLine("You lost!");
 
@@ -211,23 +211,23 @@ namespace Slutprojekt
                 Console.WriteLine("You get nothing!");
             }
 
-            else if (result == horseInt)
+            else if (result == horseInt)        //Om den har samma siffra så vinner man.
             {
-                Console.WriteLine("You won!");
+                Console.WriteLine("You won!");  
 
                 Break();
 
                 Console.WriteLine("You get double your winnings back!");
 
-                betInt *= 2;
+                betInt *= 2;            //Om man vinner får man tillbaka dubbla sin satsning.
 
                 money += betInt;
             }
 
-            return money;
+            return money;           //Här returnerar den det enda förändrade värdet, alltså användarens pengar.    
         }
 
-        static void Break()
+        static void Break()         //Som förklarat ovan är detta bara en formaterings metod, skapad för att förbättra användarens upplevelse med texten.
         {
             Thread.Sleep(1700);
             Console.WriteLine("");
